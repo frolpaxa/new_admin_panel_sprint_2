@@ -2,8 +2,11 @@
 
 set -e
 
+while ! nc -z $DB_HOST $DB_PORT; do
+      sleep 0.1
+done 
+
 python manage.py collectstatic --noinput && \
-yes | python manage.py makemigrations --merge && \
 python manage.py migrate --fake movies 0001 --noinput && \
 python manage.py migrate --noinput && \
 python manage.py createsuperuser --noinput || echo superuser exist && \
