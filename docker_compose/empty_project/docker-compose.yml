@@ -8,8 +8,6 @@ services:
       - "5432"
     env_file:
       - ./app/.env
-    ports:
-      - "5432:5432"
     volumes:
         - ./third-party/movies_database.ddl:/docker-entrypoint-initdb.d/init.sql
 
@@ -26,8 +24,6 @@ services:
         - ./third-party:/mnt
     env_file:
       - ./app/.env
-    ports:
-      - "8000:8000"
 
   nginx:
     image: nginx:latest
